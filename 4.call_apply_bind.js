@@ -24,7 +24,7 @@ boundFunc(3,4);
 class Car {
     constructor(model){
         this.model = model;
-        //this.updateModel = this.updateModel.bind(this)
+        this.updateModel = this.updateModel.bind(this)
     }
 
     updateModel(){
@@ -41,6 +41,24 @@ myCar.updateModel();// this will work fine
 var newCar = myCar.updateModel;
 newCar(); //this will be either undefined or global obj
 //same exmple
-$('btn').click(myCar.updateModel)
-$('btn').click(myCar.updateModel.bind(myCar))
+// $('btn').click(myCar.updateModel)
+// $('btn').click(myCar.updateModel.bind(myCar))
 //to fix uncomment bind
+//or use arrow function
+
+// not using arrow function
+// - should not be used on first call as it will point
+//      to global object
+
+const myBook = {
+    name: "Harry Potter",
+    logName: () => {
+        console.log(this.name);
+    },
+    logName2: function (){
+        console.log(this.name);
+    }
+}
+
+myBook.logName();
+myBook.logName2();
